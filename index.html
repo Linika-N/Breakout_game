@@ -35,6 +35,7 @@
         let brickPadding = 10;
         let brickOffsetTop = 30;
         let brickOffsetLeft = 30;
+        let score = 0;
 
 
         let bricks = [];
@@ -84,6 +85,7 @@
             drawBricks();
             drawBall();
             drawPaddle();
+            drawScore();
             collisionDetection();
             x+=dx;
             y+=dy;
@@ -144,12 +146,24 @@
                     let b=bricks[c][r];
                     if (b.status == 1) {
                         if (x>b.x && x< b.x + brickWidth && y< b.y && y< b.y+brickHeight) {
-                        dy=-dy;
-                        b.status=0;
+                            dy=-dy;
+                            b.status=0;
+                            score++;
+                            if (score == brickRowCount*brickColumnCount){
+                                alert("YOU WIN, CONGRATULATIONS!");
+                                document.location.reload();
+                                clearInterval(interval);
+                            }
                         }
                     }
                 }
             }
+        }
+
+        function drawScore() {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "0095DD";
+            ctx.fillText("Score: "+score,8,20);
         }
 
         let interval = setInterval(draw,10);
