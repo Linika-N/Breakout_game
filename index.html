@@ -196,7 +196,7 @@
                 for (let r=0; r< brickRowCount; r++) {
                     let b=bricks[c][r];
                     if (b.status == 1) {
-                        if (x+ballRadius>=b.x && y+ballRadius<= b.y || x+ballRadius<= b.x + brickWidth  && y+ballRadius<= b.y+brickHeight) {
+                        if (x+ballRadius>=b.x && y+ballRadius<= b.y && x+ballRadius<= b.x + brickWidth  && y+ballRadius<= b.y+brickHeight) {
                             dy=-dy;
                             b.status=0;
                             score++;
